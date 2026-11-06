@@ -8,7 +8,7 @@ Security fixes target the current `main` branch. Older commits and derived deplo
 
 Do not open a public issue for an unpatched vulnerability.
 
-Use [GitHub private vulnerability reporting](https://github.com/builderz-labs/marketing-dashboard/security/advisories/new). If GitHub is unavailable, email `nyk@builderz.dev` with the subject `Marketing Dashboard security report`.
+Use [GitHub private vulnerability reporting](https://github.com/Munirmohammed/marketing-dashboard/security/advisories/new). If GitHub is unavailable, email `munirmohammed038@gmail.com` with the subject `Marketing Dashboard security report`.
 
 Include the affected route or component, reproduction conditions, likely impact, and any suggested mitigation. Remove credentials, personal data, private hostnames, and unrelated local paths from logs or screenshots.
 

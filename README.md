@@ -8,9 +8,9 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-6B5CFF.svg" alt="MIT license"></a>
-  <a href="https://github.com/builderz-labs/marketing-dashboard/actions/workflows/ci.yml"><img src="https://github.com/builderz-labs/marketing-dashboard/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/Munirmohammed/marketing-dashboard/actions/workflows/ci.yml"><img src="https://github.com/Munirmohammed/marketing-dashboard/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16-17191F.svg" alt="Next.js 16"></a>
-  <a href="https://github.com/builderz-labs/marketing-dashboard"><img src="https://img.shields.io/github/stars/builderz-labs/marketing-dashboard" alt="GitHub stars"></a>
+  <a href="https://github.com/Munirmohammed/marketing-dashboard"><img src="https://img.shields.io/github/stars/Munirmohammed/marketing-dashboard" alt="GitHub stars"></a>
 </p>
 
 ---
@@ -45,7 +45,7 @@ The dashboard is operator-led. Approval, pause, writeback, and host-access contr
 ### Run locally
 
 ```bash
-git clone https://github.com/builderz-labs/marketing-dashboard.git
+git clone https://github.com/Munirmohammed/marketing-dashboard.git
 cd marketing-dashboard
 corepack enable
 pnpm install --frozen-lockfile
@@ -181,13 +181,11 @@ The export excludes environment files, databases, build output, dependency direc
 - [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) records dependency notices.
 - [CHANGELOG.md](CHANGELOG.md) tracks project changes.
 
-Use [GitHub Issues](https://github.com/builderz-labs/marketing-dashboard/issues) for reproducible bugs and scoped feature requests. Security reports must not be filed publicly.
+Use [GitHub Issues](https://github.com/Munirmohammed/marketing-dashboard/issues) for reproducible bugs and scoped feature requests. Security reports must not be filed publicly.
 
-## Built by Builderz
+## Maintainer
 
-[Builderz](https://builderz.dev) builds agent infrastructure, trading systems, and Solana applications.
-
-Maintained by [Nyk](https://nyk.dev). [Sponsor ongoing open-source maintenance](https://github.com/sponsors/0xNyk) or follow [@nykdotdev](https://x.com/nykdotdev).
+Maintained by [Munir Mohammed](https://github.com/Munirmohammed).
 
 ## License
 

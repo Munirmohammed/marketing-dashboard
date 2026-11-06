@@ -76,21 +76,24 @@ export function NavRail() {
   );
 
   return (
-    <nav className="nav-rail fixed left-0 top-[var(--header-height)] bottom-0 w-[var(--nav-width)] bg-card/92 backdrop-blur-lg border-r border-border/70 z-40 hidden md:flex flex-col">
-      <div className="px-3 py-3 border-b border-border/60 flex items-center gap-2.5">
-        <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-xs font-semibold">
+    <nav className="nav-rail fixed left-0 top-[var(--header-height)] bottom-0 w-[var(--nav-width)] bg-card/95 backdrop-blur-xl border-r border-border/80 z-40 hidden md:flex flex-col shadow-xs">
+      <div className="px-3.5 py-3 border-b border-border/70 flex items-center gap-2.5">
+        <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-500 shadow-md shadow-blue-500/20 text-white flex items-center justify-center text-xs font-bold ring-1 ring-white/20">
           H
         </div>
         <div className="min-w-0">
-          <div className="text-sm font-semibold leading-none">Hermes</div>
-          <div className="text-[10px] text-muted-foreground mt-1 uppercase tracking-wide">Mission View</div>
+          <div className="text-sm font-semibold tracking-tight leading-none text-foreground flex items-center gap-1.5">
+            Hermes
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          </div>
+          <div className="text-[10px] font-medium text-muted-foreground/80 mt-1 uppercase tracking-wider">Mission View</div>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-2 py-2">
+      <div className="flex-1 overflow-y-auto px-2.5 py-2.5">
         {NAV_GROUPS.map((group, idx) => (
-          <div key={group.label} className={idx > 0 ? 'mt-3 pt-3 border-t border-border/50' : ''}>
-            <div className="px-2 pb-1 text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
+          <div key={group.label} className={idx > 0 ? 'mt-3.5 pt-3 border-t border-border/50' : ''}>
+            <div className="px-2.5 pb-1 text-[10px] uppercase tracking-wider text-muted-foreground/75 font-semibold">
               {group.label}
             </div>
             <div className="space-y-0.5">
@@ -102,17 +105,19 @@ export function NavRail() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm transition-smooth ${
+                    className={`group relative w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] font-medium transition-all duration-200 ${
                       active
-                        ? 'bg-primary/14 text-primary'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-surface-2/80'
+                        ? 'bg-gradient-to-r from-primary/14 via-primary/8 to-transparent text-primary font-semibold shadow-xs'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-surface-2/70'
                     }`}
                   >
-                    {active && <span className="absolute left-0 w-0.5 h-5 bg-primary rounded-r" />}
-                    <Icon size={16} />
+                    {active && (
+                      <span className="absolute left-0 top-1.5 bottom-1.5 w-1 bg-gradient-to-b from-primary to-indigo-500 rounded-r-full shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+                    )}
+                    <Icon size={16} className={`transition-transform duration-200 group-hover:scale-110 ${active ? 'text-primary' : 'text-muted-foreground/80 group-hover:text-foreground'}`} />
                     <span className="flex-1 truncate">{item.label}</span>
                     {count > 0 && (
-                      <span className={`min-w-[18px] h-4 px-1 text-[9px] font-bold rounded-full flex items-center justify-center ${
+                      <span className={`min-w-[19px] h-4.5 px-1.5 text-[10px] font-bold rounded-full flex items-center justify-center shadow-xs transition-transform duration-200 group-hover:scale-105 ${
                         item.countKey === 'signals_today' ? 'count-badge-info' : 'count-badge'
                       }`}>
                         {count > 99 ? '99+' : count}
@@ -126,17 +131,19 @@ export function NavRail() {
         ))}
       </div>
 
-      <div className="px-2 py-2 border-t border-border/60">
+      <div className="px-2.5 py-2.5 border-t border-border/60">
         <Link
           href="/settings"
-          className={`relative w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm transition-smooth ${
+          className={`group relative w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-[13px] font-medium transition-all duration-200 ${
             pathname === '/settings'
-              ? 'bg-primary/14 text-primary'
-              : 'text-muted-foreground hover:text-foreground hover:bg-surface-2/80'
+              ? 'bg-gradient-to-r from-primary/14 via-primary/8 to-transparent text-primary font-semibold shadow-xs'
+              : 'text-muted-foreground hover:text-foreground hover:bg-surface-2/70'
           }`}
         >
-          {pathname === '/settings' && <span className="absolute left-0 w-0.5 h-5 bg-primary rounded-r" />}
-          <Settings size={16} />
+          {pathname === '/settings' && (
+            <span className="absolute left-0 top-1.5 bottom-1.5 w-1 bg-gradient-to-b from-primary to-indigo-500 rounded-r-full shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+          )}
+          <Settings size={16} className={`transition-transform duration-200 group-hover:rotate-45 ${pathname === '/settings' ? 'text-primary' : 'text-muted-foreground/80 group-hover:text-foreground'}`} />
           <span>Settings</span>
         </Link>
       </div>

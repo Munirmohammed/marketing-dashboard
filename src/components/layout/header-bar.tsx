@@ -28,16 +28,16 @@ export function HeaderBar() {
   );
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-[var(--header-height)] bg-card/90 backdrop-blur-sm border-b border-border/70 flex items-center justify-between px-3 sm:px-4 z-50">
-      <div className="flex items-center gap-2.5">
-        <div className="w-7 h-7 rounded-md bg-primary/20 flex items-center justify-center">
-          <span className="text-primary font-bold text-xs">H</span>
+    <header className="fixed top-0 left-0 right-0 h-[var(--header-height)] bg-card/85 backdrop-blur-xl border-b border-border/80 flex items-center justify-between px-3.5 sm:px-5 z-50 shadow-xs">
+      <div className="flex items-center gap-3">
+        <div className="w-7.5 h-7.5 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 shadow-sm shadow-blue-500/25 flex items-center justify-center ring-1 ring-white/20">
+          <span className="text-white font-bold text-xs tracking-tight">H</span>
         </div>
-        <span className="font-semibold text-sm tracking-tight">Hermes</span>
+        <span className="font-semibold text-sm tracking-tight text-foreground">Hermes</span>
 
         {/* Quick stats — hidden on small screens */}
         {stats && (
-          <div className="hidden lg:flex items-center gap-2.5 ml-2.5 pl-2.5 border-l border-border/30">
+          <div className="hidden lg:flex items-center gap-2 ml-3 pl-3 border-l border-border/60">
             <QuickStat icon={PenLine} value={stats.posts_today} label="posts" />
             <QuickStat icon={Mail} value={stats.emails_sent} label="sent" />
             <QuickStat icon={Users} value={stats.pipeline_count} label="pipeline" />
@@ -45,7 +45,7 @@ export function HeaderBar() {
         )}
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-3">
+      <div className="flex items-center gap-2 sm:gap-2.5">
         <SeedToggle active={realOnly} onToggle={toggleRealOnly} />
         <SearchTrigger />
         <NotificationBell />
@@ -60,10 +60,10 @@ export function HeaderBar() {
 
 function QuickStat({ icon: Icon, value, label }: { icon: typeof PenLine; value: number; label: string }) {
   return (
-    <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-      <Icon size={11} />
-      <span className="font-mono font-medium text-foreground">{value}</span>
-      <span>{label}</span>
+    <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-surface-1/80 border border-border/50 text-[11px] text-muted-foreground shadow-2xs">
+      <Icon size={12} className="text-primary/80" />
+      <span className="font-mono font-semibold text-foreground">{value}</span>
+      <span className="text-[10px] uppercase tracking-wider">{label}</span>
     </div>
   );
 }
@@ -71,16 +71,16 @@ function QuickStat({ icon: Icon, value, label }: { icon: typeof PenLine; value: 
 function SeedToggle({ active, onToggle }: { active: boolean; onToggle: () => void }) {
   return (
     <button
-      className={`h-7 flex items-center gap-1.5 px-2.5 rounded-md text-[11px] font-medium transition-colors ${
+      className={`h-8 flex items-center gap-1.5 px-2.5 rounded-lg text-[11px] font-semibold transition-all duration-200 cursor-pointer ${
         active
-          ? 'bg-success/15 text-success border border-success/30'
-          : 'bg-muted/50 text-muted-foreground hover:bg-muted border border-border/30'
+          ? 'bg-success/15 text-success border border-success/30 shadow-xs'
+          : 'bg-surface-1/90 text-muted-foreground hover:text-foreground hover:bg-surface-2 border border-border/70 shadow-2xs'
       }`}
       onClick={onToggle}
       title={active ? 'Showing real data only' : 'Showing all data (including seeded)'}
     >
-      {active ? <Eye size={13} /> : <EyeOff size={13} />}
-      <span className="hidden sm:inline">{active ? 'Real' : 'All'}</span>
+      {active ? <Eye size={13} className="text-success" /> : <EyeOff size={13} />}
+      <span className="hidden sm:inline">{active ? 'Real Only' : 'All Data'}</span>
     </button>
   );
 }
@@ -149,50 +149,50 @@ function NotificationBell() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-80 sm:w-96 card border shadow-lg max-h-96 overflow-hidden flex flex-col animate-slide-in z-50">
-          <div className="flex items-center justify-between px-4 py-2.5 border-b border-border/30">
-            <span className="text-sm font-medium">Notifications</span>
+        <div className="absolute right-0 top-full mt-2 w-80 sm:w-96 card glass-strong border border-border/80 shadow-xl max-h-96 overflow-hidden flex flex-col animate-slide-in z-50 rounded-xl">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-border/60 bg-surface-1/50">
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Notifications</span>
             {unreadCount > 0 && (
               <button
                 onClick={markAllRead}
-                className="flex items-center gap-1 text-[10px] text-primary hover:underline"
+                className="flex items-center gap-1 text-[11px] font-medium text-primary hover:underline cursor-pointer"
               >
-                <CheckCheck size={12} /> Mark all read
+                <CheckCheck size={13} /> Mark all read
               </button>
             )}
           </div>
 
-          <div className="overflow-y-auto flex-1">
+          <div className="overflow-y-auto flex-1 divide-y divide-border/30">
             {(!notifications || notifications.length === 0) ? (
-              <div className="p-6 text-center text-sm text-muted-foreground">
-                <Bell size={24} className="mx-auto mb-2 opacity-30" />
+              <div className="p-8 text-center text-sm text-muted-foreground">
+                <Bell size={24} className="mx-auto mb-2 opacity-30 text-muted-foreground" />
                 No notifications yet
               </div>
             ) : (
               notifications.map(n => (
                 <div
                   key={n.id}
-                  className={`px-4 py-3 border-b border-border/20 hover:bg-muted/30 transition-colors ${
-                    !n.read ? 'bg-primary/5' : ''
+                  className={`px-4 py-3 hover:bg-surface-2/60 transition-colors ${
+                    !n.read ? 'bg-primary/6' : ''
                   }`}
                 >
-                  <div className="flex items-start gap-2">
-                    <div className={`mt-0.5 ${SEVERITY_COLORS[n.severity] || 'text-muted-foreground'}`}>
+                  <div className="flex items-start gap-2.5">
+                    <div className={`mt-0.5 p-1 rounded-md bg-surface-2 ${SEVERITY_COLORS[n.severity] || 'text-muted-foreground'}`}>
                       <Bell size={12} />
                     </div>
                     <div className="flex-1 min-w-0">
                       {n.title && (
-                        <div className="text-xs font-medium truncate">{n.title}</div>
+                        <div className="text-xs font-semibold truncate text-foreground">{n.title}</div>
                       )}
-                      <p className="text-[11px] text-muted-foreground leading-relaxed">{n.message}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[10px] text-muted-foreground">{timeAgo(n.created_at)}</span>
+                      <p className="text-[11px] text-muted-foreground leading-relaxed mt-0.5">{n.message}</p>
+                      <div className="flex items-center gap-2 mt-1.5">
+                        <span className="text-[10px] text-muted-foreground/75 font-mono">{timeAgo(n.created_at)}</span>
                         {!n.read && (
                           <button
                             onClick={() => markRead(n.id)}
-                            className="text-[10px] text-primary hover:underline flex items-center gap-0.5"
+                            className="text-[10px] font-medium text-primary hover:underline flex items-center gap-0.5 cursor-pointer ml-auto"
                           >
-                            <Check size={10} /> Read
+                            <Check size={11} /> Mark read
                           </button>
                         )}
                       </div>
@@ -211,12 +211,12 @@ function NotificationBell() {
 function SearchTrigger() {
   return (
     <button
-      className="hidden md:flex items-center gap-2 h-7 px-3 rounded-md bg-muted/55 hover:bg-muted border border-border/30 text-xs text-muted-foreground transition-colors"
+      className="hidden md:flex items-center gap-2.5 h-8 px-3 rounded-lg bg-surface-1/90 hover:bg-surface-2 border border-border/80 text-xs text-muted-foreground transition-all shadow-2xs cursor-pointer"
       onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
     >
-      <Search size={13} />
-      <span className="hidden sm:inline">Search</span>
-      <kbd className="hidden sm:inline text-[10px] bg-muted px-1 py-0.5 rounded ml-1">⌘K</kbd>
+      <Search size={13} className="text-muted-foreground/80" />
+      <span className="hidden sm:inline font-medium">Search...</span>
+      <kbd className="hidden sm:inline text-[10px] font-mono bg-surface-2 text-muted-foreground border border-border/60 px-1.5 py-0.5 rounded shadow-3xs ml-1">⌘K</kbd>
     </button>
   );
 }
@@ -227,11 +227,11 @@ function ThemeToggle() {
 
   return (
     <button
-      className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+      className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-2 border border-transparent hover:border-border/60 transition-all text-muted-foreground hover:text-foreground cursor-pointer shadow-2xs"
       onClick={() => setTheme(currentTheme === 'dark' ? 'light' : 'dark')}
       title={`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} mode`}
     >
-      {currentTheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+      {currentTheme === 'dark' ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-slate-700" />}
     </button>
   );
 }
@@ -239,15 +239,15 @@ function ThemeToggle() {
 function FeedToggle({ open, onToggle }: { open: boolean; onToggle: () => void }) {
   return (
     <button
-      className={`w-7 h-7 flex items-center justify-center rounded-md transition-colors ${
+      className={`w-8 h-8 flex items-center justify-center rounded-lg transition-all cursor-pointer ${
         open
-          ? 'bg-primary/15 text-primary'
-          : 'hover:bg-muted text-muted-foreground hover:text-foreground'
+          ? 'bg-primary/15 text-primary border border-primary/30 shadow-xs'
+          : 'hover:bg-surface-2 border border-transparent hover:border-border/60 text-muted-foreground hover:text-foreground shadow-2xs'
       }`}
       onClick={onToggle}
       title="Toggle live feed"
     >
-      <Radio size={16} />
+      <Radio size={15} />
     </button>
   );
 }

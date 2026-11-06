@@ -23,12 +23,13 @@ export function TrendChart({ data, xKey, lines, height = 200 }: TrendChartProps)
   return (
     <ResponsiveContainer width="100%" height={height}>
       <LineChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" strokeOpacity={0.6} />
         <XAxis
           dataKey={xKey}
           tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
           axisLine={{ stroke: 'var(--border)' }}
           tickLine={false}
+          dy={6}
         />
         <YAxis
           tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
@@ -40,10 +41,12 @@ export function TrendChart({ data, xKey, lines, height = 200 }: TrendChartProps)
           contentStyle={{
             background: 'var(--card)',
             border: '1px solid var(--border)',
-            borderRadius: 8,
+            borderRadius: 12,
+            boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
             fontSize: 12,
+            padding: '8px 12px',
           }}
-          labelStyle={{ color: 'var(--foreground)' }}
+          labelStyle={{ color: 'var(--foreground)', fontWeight: 600, marginBottom: 4 }}
         />
         {lines.map(line => (
           <Line
@@ -51,8 +54,9 @@ export function TrendChart({ data, xKey, lines, height = 200 }: TrendChartProps)
             type="monotone"
             dataKey={line.key}
             stroke={line.color}
-            strokeWidth={2}
+            strokeWidth={2.5}
             dot={false}
+            activeDot={{ r: 5, strokeWidth: 2, stroke: 'var(--card)' }}
             name={line.label}
           />
         ))}
